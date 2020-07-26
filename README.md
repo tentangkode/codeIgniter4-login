@@ -7,6 +7,8 @@ Login system example using Codeigniter 4 from scracth
 Clone this repository\
 `git clone https://github.com/jeypc/codeIgniter4-login.git`
 
+Run `composer install` to install all required packages
+
 Rename `env` file to `.env`
 
 Create a new database called `ci4login` or whatever you prefer, and then open `.env` file and set database name
