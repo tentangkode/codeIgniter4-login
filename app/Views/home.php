@@ -27,9 +27,9 @@
 					</li>
 				</ul>
 				<ul class="navbar-nav ml-auto">
-					<?php if(session()->has('logged_in') and session()->get('logged_in') === true): ?>
+					<?php if($session->has('logged_in') and $session->get('logged_in') === true): ?>
 						<li class="nav-item">
-							<a class="nav-link" href="#"><?= session()->get('fullName') ?></a>
+							<a class="nav-link" href="#"><?= $session->get('fullName') ?></a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="<?= site_url('auth/logout') ?>">Logout</a>
@@ -47,8 +47,8 @@
 
 	<div class="container">
 		<br/>
-		<?php if(session()->has('logged_in') and session()->get('logged_in') === true): ?>
-			<h3>Selamat datang, <?= session()->get('fullName') ?></h3>
+		<?php if($session->has('logged_in') and $session->get('logged_in') === true): ?>
+			<h3>Welcome back, <?= $session->get('fullName') ?></h3>
 		<?php endif; ?>
 	</div>
 
