@@ -23,16 +23,17 @@
             <div class="col-6 mx-auto">
                 <div class="jumbotron">
                     <center><h3>LOGIN FORM</h3></center><br />
-
-                    <?php if(isset($error)): ?>
-                        <p class="text-danger text-center"><?= $error ?></p>
+                    <?php if(session()->has('error')): ?>
+                        <p class="text-danger text-center"><?= session()->getFlashdata('error') ?></p>
                     <?php endif; ?>
+                    
+                    <?php $validation = session()->getFlashdata('validation'); ?>
 
                     <form action="<?= current_url() ?>" method="POST">
                         <?= csrf_field() ?>
                         <div class="form-group">
                             <label for="">Username / Email</label>
-                            <input autocomplete="off" autofocus="on" type="text" name="username" id="username" class="form-control <?= $validation && $validation->hasError('username') ? 'is-invalid' : '' ?>">
+                            <input autocomplete="off" autofocus="on" type="text" name="username" id="username" value="<?= old('username') ?>" class="form-control <?= $validation && $validation->hasError('username') ? 'is-invalid' : '' ?>">
                             <?php if($validation && $validation->hasError('username')): ?>
                                 <div class="invalid-feedback">
                                     <?= $validation->getError('username')?>
@@ -42,7 +43,7 @@
 
                         <div class="form-group">
                             <label for="">Password</label>
-                            <input type="password" name="password" id="password" class="form-control <?= $validation && $validation->hasError('password') ? 'is-invalid' : '' ?>">
+                            <input type="password" name="password" id="password" value="<?= old('password') ?>" class="form-control <?= $validation && $validation->hasError('password') ? 'is-invalid' : '' ?>">
                             <?php if($validation && $validation->hasError('password')): ?>
                                 <div class="invalid-feedback">
                                     <?= $validation->getError('password')?>

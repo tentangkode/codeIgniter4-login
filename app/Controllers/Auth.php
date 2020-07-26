@@ -18,38 +18,30 @@ class Auth extends BaseController
 				$user = $userModel->asObject()->where('username', $username)->orWhere('email', $username)->first();
 				if ($user) {
 					if (password_verify($password, $user->password)) {
-
 						session()->set([
 							'fullName' => $user->first_name . ' ' . $user->last_name,
 							'username'  => $user->username,
 							'email'     => $user->email,
 							'logged_in' => TRUE
 						]);
-
+						
 						return redirect('/');
 					}
 				}
 
-				return view('auth/login', [
-					'validation' => null,
-					'error' => 'Username atau Password salah!'
-				]);
-
-			} else {
-				return view('auth/login', [
-					'validation' => $this->validator,
-					'error' => null
-				]);
+				return redirect()->back()->withInput()->with('error', 'Username atau Password salah!');
 			}
-		} else {
-			return view('auth/login', ['validation' => null, 'error' => null]);
+			
+			return redirect()->back()->withInput()->with('validation', $this->validator);
+			
 		}
+		
+		return view('auth/login');
 	}
 
 	public function logout()
 	{
 		session()->destroy();
-
 		return redirect('/');
 	}
 }
