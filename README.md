@@ -4,18 +4,18 @@ Login system example using Codeigniter 4 from scracth
 
 ## Installation Guide
 
-Clone this repository
+Clone this repository\
 `git clone https://github.com/jeypc/codeIgniter4-login.git`
 
 Create a new database called `ci4login` or whatever you prefer, and then open `.env` file and set database name
 
-Run migrations to create the tables
+Run migrations to create the tables\
 `php spark migrate`
 
-Run seeder to insert some dummy data
+Run seeder to insert some dummy data\
 `php spark db:seed UserSeeder`
 
-and finally run local server development to start the app
+and finally run local server development to start the app\
 `php spark serve`
 
 ## Server Requirements
