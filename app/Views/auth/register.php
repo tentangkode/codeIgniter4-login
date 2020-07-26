@@ -40,7 +40,7 @@
 
                         <div class="form-group">
                             <label for="">Last Name</label>
-                            <input autocomplete="off" type="text" name="last_name" id="last_name" class="form-control <?= $validation && $validation->hasError('last_name') ? 'is-invalid' : '' ?>">
+                            <input autocomplete="off" type="text" name="last_name" id="last_name" value="<?= old('last_name') ?>" class="form-control <?= $validation && $validation->hasError('last_name') ? 'is-invalid' : '' ?>">
                             <?php if($validation && $validation->hasError('last_name')): ?>
                                 <div class="invalid-feedback">
                                     <?= $validation->getError('last_name')?>
@@ -50,7 +50,7 @@
 
                         <div class="form-group">
                             <label for="">Email</label>
-                            <input autocomplete="off" type="text" name="email" id="email" class="form-control <?= $validation && $validation->hasError('email') ? 'is-invalid' : '' ?>">
+                            <input autocomplete="off" type="text" name="email" id="email" value="<?= old('email') ?>" class="form-control <?= $validation && $validation->hasError('email') ? 'is-invalid' : '' ?>">
                             <?php if($validation && $validation->hasError('email')): ?>
                                 <div class="invalid-feedback">
                                     <?= $validation->getError('email')?>
@@ -60,7 +60,7 @@
                         
                         <div class="form-group">
                             <label for="">Username</label>
-                            <input autocomplete="off" type="text" name="username" id="username" class="form-control <?= $validation && $validation->hasError('username') ? 'is-invalid' : '' ?>">
+                            <input autocomplete="off" type="text" name="username" id="username" value="<?= old('username') ?>" class="form-control <?= $validation && $validation->hasError('username') ? 'is-invalid' : '' ?>">
                             <?php if($validation && $validation->hasError('username')): ?>
                                 <div class="invalid-feedback">
                                     <?= $validation->getError('username')?>
@@ -70,7 +70,7 @@
 
                         <div class="form-group">
                             <label for="">Password</label>
-                            <input type="password" name="password" id="password" class="form-control <?= $validation && $validation->hasError('password') ? 'is-invalid' : '' ?>">
+                            <input type="password" name="password" id="password" value="<?= old('password') ?>" class="form-control <?= $validation && $validation->hasError('password') ? 'is-invalid' : '' ?>">
                             <?php if($validation && $validation->hasError('password')): ?>
                                 <div class="invalid-feedback">
                                     <?= $validation->getError('password')?>
@@ -80,7 +80,7 @@
 
                         <div class="form-group">
                             <label for="">Confirm Password</label>
-                            <input type="password" name="cpassword" id="cpassword" class="form-control <?= $validation && $validation->hasError('cpassword') ? 'is-invalid' : '' ?>">
+                            <input type="password" name="cpassword" id="cpassword" value="<?= old('cpassword') ?>" class="form-control <?= $validation && $validation->hasError('cpassword') ? 'is-invalid' : '' ?>">
                             <?php if($validation && $validation->hasError('cpassword')): ?>
                                 <div class="invalid-feedback">
                                     <?= $validation->getError('cpassword')?>

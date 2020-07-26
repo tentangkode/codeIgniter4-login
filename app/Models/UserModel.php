@@ -7,5 +7,5 @@ class UserModel extends \CodeIgniter\Model
     protected $table = 'users';
     protected $primaryKey = 'user_id';
 
-    protected $allowFields = ['first_name', 'last_name', 'email', 'username', 'password'];
+    protected $allowedFields = ['first_name', 'last_name', 'email', 'username', 'password'];
 }

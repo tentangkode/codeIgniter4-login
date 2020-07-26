@@ -49,18 +49,33 @@ class Auth extends BaseController
 	public function register()
 	{
 		if ($this->request->getMethod() === 'post') {
-
-			$validate = $this->validate([
+			$rules = [
 				'first_name' => [
 					'label' => 'First Name',
 					'rules' => 'required|min_length[2]'
 				],
-				'last_name' => 'required',
-				'username' => 'required|is_unique[users.username]',
-				'email' => 'required|is_unique[users.email]',
-				'password' => 'required|min_length[6]',
-				'cpassword' => 'required|matches[password]'
-			]);
+				'last_name' => [
+					'label' => 'Last Name',
+					'rules' => 'required'
+				],
+				'username' => [
+					'label' => 'Username',
+					'rules' => 'required|alpha_numeric|is_unique[users.username]'
+				],
+				'email' => [
+					'label' => 'E-Mail',
+					'rules' => 'required|valid_email|is_unique[users.email]'
+				],
+				'password' => [
+					'label' => 'Password',
+					'rules' => 'required|min_length[6]'
+				],
+				'cpassword' => [
+					'label' => 'Password Confirmation',
+					'rules' => 'required|matches[password]'
+				]
+			];
+			$validate = $this->validate($rules);
 			if ($validate) {
 				$newUser = [
 					'first_name' => $this->request->getPost('first_name'),
