@@ -46,6 +46,50 @@ class Auth extends BaseController
 		}
 	}
 
+	public function register()
+	{
+		if ($this->request->getMethod() === 'post') {
+
+			$validate = $this->validate([
+				'first_name' => [
+					'label' => 'First Name',
+					'rules' => 'required|min_length[2]'
+				],
+				'last_name' => 'required',
+				'username' => 'required|is_unique[users.username]',
+				'email' => 'required|is_unique[users.email]',
+				'password' => 'required|min_length[6]',
+				'cpassword' => 'required|matches[password]'
+			]);
+			if ($validate) {
+				$newUser = [
+					'first_name' => $this->request->getPost('first_name'),
+					'last_name' => $this->request->getPost('last_name'),
+					'username' => $this->request->getPost('username'),
+					'email' => $this->request->getPost('email'),
+					'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
+				];
+
+				$userModel = new \App\Models\UserModel;
+				$userModel->insert($newUser);
+
+				session()->set([
+					'fullName' => $newUser['first_name'] . ' ' . $newUser['last_name'],
+					'username'  => $newUser['username'],
+					'email'     => $newUser['email'],
+					'logged_in' => TRUE
+				]);
+
+				return redirect('/');
+
+			} else {
+				return redirect()->back()->withInput()->with('validation', $this->validator);
+			}
+		} else {
+			return view('auth/register', ['validation' => null]);
+		}
+	}
+
 	public function logout()
 	{
 		session()->destroy();
