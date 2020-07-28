@@ -98,7 +98,7 @@ class Auth extends BaseController
 				return redirect('/');
 
 			} else {
-				return redirect()->back()->withInput()->with('validation', $this->validator);
+				return redirect('auth/register')->withInput()->with('validation', $this->validator);
 			}
 		} else {
 			return view('auth/register', ['validation' => null]);
