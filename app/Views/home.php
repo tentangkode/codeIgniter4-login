@@ -38,6 +38,9 @@
 						<li class="nav-item">
 							<a class="nav-link" href="<?= site_url('auth/login') ?>">Login</a>
 						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="<?= site_url('auth/register') ?>">Register</a>
+						</li>
 					<?php endif; ?>
 					
 				</ul>

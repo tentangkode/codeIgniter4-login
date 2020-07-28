@@ -51,6 +51,8 @@
                             <?php endif; ?>
                         </div>
 
+                        <a href="<?= site_url('auth/register') ?>">Belum punya akun? daftar sekarang</a><br /><br />
+
                         <button class="btn btn-success btn-block">SIGN IN</button>
                     </form>
                 </div>

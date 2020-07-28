@@ -39,6 +39,65 @@ class Auth extends BaseController
 		return view('auth/login');
 	}
 
+	public function register()
+	{
+		if ($this->request->getMethod() === 'post') {
+			$rules = [
+				'first_name' => [
+					'label' => 'First Name',
+					'rules' => 'required|min_length[2]'
+				],
+				'last_name' => [
+					'label' => 'Last Name',
+					'rules' => 'required'
+				],
+				'username' => [
+					'label' => 'Username',
+					'rules' => 'required|alpha_numeric|is_unique[users.username]'
+				],
+				'email' => [
+					'label' => 'E-Mail',
+					'rules' => 'required|valid_email|is_unique[users.email]'
+				],
+				'password' => [
+					'label' => 'Password',
+					'rules' => 'required|min_length[6]'
+				],
+				'cpassword' => [
+					'label' => 'Password Confirmation',
+					'rules' => 'required|matches[password]'
+				]
+			];
+			$validate = $this->validate($rules);
+			if ($validate) {
+				$newUser = [
+					'first_name' => $this->request->getPost('first_name'),
+					'last_name' => $this->request->getPost('last_name'),
+					'username' => $this->request->getPost('username'),
+					'email' => $this->request->getPost('email'),
+					'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
+				];
+
+				$userModel = new \App\Models\UserModel;
+				$userModel->insert($newUser);
+
+				session()->set([
+					'fullName' => $newUser['first_name'] . ' ' . $newUser['last_name'],
+					'username'  => $newUser['username'],
+					'email'     => $newUser['email'],
+					'logged_in' => TRUE
+				]);
+
+				return redirect('/');
+
+			} else {
+				return redirect('auth/register')->withInput()->with('validation', $this->validator);
+			}
+		} else {
+			return view('auth/register', ['validation' => null]);
+		}
+	}
+
 	public function logout()
 	{
 		session()->destroy();

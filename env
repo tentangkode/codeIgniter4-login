@@ -52,7 +52,7 @@ app.CSRFExcludeURIs = []
 database.default.hostname = localhost
 database.default.database = ci4login
 database.default.username = root
-database.default.password = 
+database.default.password = root
 database.default.DBDriver = MySQLi
 
 # database.tests.hostname = localhost
